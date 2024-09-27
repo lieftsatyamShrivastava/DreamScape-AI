@@ -1,14 +1,20 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
- import { Header } from "@/components/Header";
- import Provider from "./provider";
- const geistSans = localFont({
+import { Header } from "@/components/Header";
+import { Toaster } from "@/components/ui/toaster";
+import Provider from "./provider";
+import { Sale } from "@/components/Sale";
+import Script from "next/script";
+
+const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -27,22 +33,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
-      >
-        <ThemeProvider
-
-            attribute="class"
-            defaultTheme="dark"
-          >
-            <Provider>
-            <Header/>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <Provider>
+            <Sale/>
+            <Header />
             {children}
-            </Provider>
-          </ThemeProvider>
-        
+            <Toaster />
+          </Provider>
+        </ThemeProvider>
       </body>
+      <Script id="gtap-script" async src="https://www.googletagmanager.com/gtag/js?id=G-D8MGF2WQB2" />
+      <Script id="gtag">
+        {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
 
+              gtag('config', 'G-D8MGF2WQB2');
+        `}
+      </Script>
     </html>
   );
 }

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react'
+
 import Link from 'next/link'
 import { Button } from './ui/button'
 import { signIn, signOut, useSession } from 'next-auth/react'
@@ -13,7 +13,11 @@ export const Header = () => {
   //   console.log("session data", session);
   // }, [session])
   return (
-    <div className="fixed top-0 w-full h-[60px] bg-black border-b border-white/60 p-3 flex justify-between items-center z-50">
+   
+    <div className=" top-0 w-full h-[60px] bg-indigo-500  border-b border-white/60 p-3 flex justify-between items-center z-50">
+     
+     
+     
       <Link href="/">
 
         <h2 className='font-bold text-xl'> DreamScape AI
@@ -30,11 +34,14 @@ export const Header = () => {
           <Button onClick={() => signOut()} variant="destructive">
             Logout
           </Button>
-
+        
           <Avatar className="w-6 h-6"> {/* Makes avatar 24x24px */}
-            <AvatarImage src={session.user?.image!} className="w-full h-full" />
-            <AvatarFallback>CN</AvatarFallback>
+          <Link href="/profile" className="none">
+            <AvatarImage src={session.user?.image??""} className="w-full h-full" />
+            <AvatarFallback>U</AvatarFallback>
+            </Link>
           </Avatar>
+          
 
         </div>
 

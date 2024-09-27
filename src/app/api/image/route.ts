@@ -1,4 +1,4 @@
-import { authOptions } from "@/utils/authOptions";
+ import { authOptions } from "@/utils/authOptions";
 import prisma from "@/utils/prisma";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
      prompt: body.prompt,
       url: imageURL,
       seed: randomSeed,
-      userId: user!.id,
+      userId:user!.id,
     },
   });
 
@@ -41,6 +41,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+  if(request.body) return NextResponse.error();
   const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json(

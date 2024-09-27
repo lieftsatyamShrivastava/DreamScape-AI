@@ -15,6 +15,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { useSession } from 'next-auth/react'
+import { useToast } from '@/hooks/use-toast'
 
 
 const formSchema = z.object({
@@ -25,16 +26,20 @@ export default function Page() {
     const {data: session} = useSession();
     const [outputImg, setOutputImage] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
-    
+       
+   const {toast} = useToast()
+
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {},
     });
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        setLoading(true); // Start loading
+        // Start loading
 
         try {
+            setLoading(true);
             const response = await fetch("/api/image", {
                 method: "POST",
                 headers: {
@@ -42,24 +47,21 @@ export default function Page() {
                 },
                 body: JSON.stringify({...values, email: session?.user.email}),
             });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
             const data = await response.json();
-            if (data.url) {
-                setOutputImage(data.url);
-            } else {
-                throw new Error("No image URL found in the response");
-            }
 
-        } catch (error) {
-            console.error("Error generating image:", error);
-        } finally {
-            setLoading(false); // Stop loading
-        }
-    }
+            if (response.status === 200) {
+                setOutputImage(data.url);
+              } 
+              else {
+                toast({ variant: 'destructive', title: `Please LogIn  (${response.status})!!!`, });
+              }
+            } catch (error) {
+                toast({ variant: 'destructive', title: "Server error!!!", description: String(error) });
+            //   console.error('Error generating image:', error);
+            } finally {
+              setLoading(false); // Stop loading
+            }
+          }
 
     return (
         <div className='w-full h-dvh flex justify-center items-center pt-[64px] flex-col'>
