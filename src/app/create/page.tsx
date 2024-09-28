@@ -64,17 +64,17 @@ export default function Page() {
           }
 
     return (
-        <div className='w-full h-dvh flex justify-center items-center pt-[64px] flex-col'>
+        <div className='w-full h-dvh flex justify-center items-center pt-[64px] flex-col  bg-gradient-to-br from-slate-900 to-slate-700 '>
             <div className='w-full border border-blue-400 p-3'>
-                <h1 className='text-center font-bold text-white text-4xl'>bena</h1>
-                <p className='text-white/60 text-center'>
-                    Turn Imagination into Art with Just a Few Words For Free
+                <h1 className='text-center font-bold  text-4xl bg-gradient-to-t from-blue-100 to-slate-50   bg-clip-text text-transparent'>DreamScape AI</h1>
+                <p className= 'bg-gradient-to-br from-zinc-200 to-slate-50 bg-clip-text text-transparent text-center'>
+                Choose from diverse AI models, fine-tune with seeds, sizes, and prompts to bring your vision to life with precision and control
                 </p>
             </div>
 
             <div className='flex border border-green-500 w-full gap-3 h-full'>
                 <div className='__form flex-[2] border border-yellow-400 flex justify-start items-center flex-col'>
-                    <p>Type here</p>
+                    <p>Transform text into stunning visuals with the power of AI – bring your imagination to life!</p>
                     <div className="flex gap-2 w-full">
                         <Form {...form}>
                             <form

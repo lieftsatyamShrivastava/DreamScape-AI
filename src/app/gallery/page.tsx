@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
@@ -6,9 +6,8 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader2 } from 'lucide-react'
 
-export default function Page(){
-  const [email, setEmail] = useState("")
-
+export default function ComingSoon() {
+  const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isSubscribed, setIsSubscribed] = useState(false)
 
@@ -34,7 +33,7 @@ export default function Page(){
   }
   
   return (
-    <div className="min-h-screen  bg-gradient-to-br from-slate-900 to-slate-700 flex-col items-center justify-center p-4">
+    <div className="min-h-screen  bg-gradient-to-bl from-orange-500 via-violet-600 to-sky-700 flex-col items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -45,7 +44,7 @@ export default function Page(){
           AI Image Magic
         </h1>
         <p className="text-2xl text-white mb-8">
-          {"We're crafting something "}<span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-black to-yellow-500">extraordinary</span>
+          We&apos;re crafting something <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-black to-yellow-500">extraordinary</span>
         </p>
         <div className="relative w-64 h-64 mx-auto mb-8">
           <motion.div
@@ -89,14 +88,14 @@ export default function Page(){
               required
               className="bg-white/20 text-white placeholder-white/70 border-white/30"
             />
-            <Button type="submit" disabled={isLoading} className=" bg-gradient-to-r from-amber-500 to-pink-500 text-white">
+            <Button type="submit" disabled={isLoading} className="bg-white text-purple-700 hover:bg-white/90">
               {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
               {isLoading ? 'Subscribing...' : 'Notify Me'}
             </Button>
           </form>
         ) : (
           <p className="text-xl text-white font-semibold">
-            {"Thanks for subscribing! We'll keep you posted."}
+            Thanks for subscribing! We&apos;ll keep you posted.
           </p>
         )}
       </motion.div>

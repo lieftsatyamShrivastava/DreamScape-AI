@@ -14,7 +14,7 @@ export const Header = () => {
   // }, [session])
   return (
    
-    <div className=" top-0 w-full h-[60px] bg-indigo-500  border-b border-white/60 p-3 flex justify-between items-center z-50">
+    <div className=" top-0 w-full h-[60px] bg-gradient-to-r from-slate-900 to-slate-700  border-b border-white/60 p-3 flex justify-between items-center z-50">
      
      
      
@@ -35,8 +35,8 @@ export const Header = () => {
             Logout
           </Button>
         
-          <Avatar className="w-6 h-6"> {/* Makes avatar 24x24px */}
-          <Link href="/profile" className="none">
+          <Avatar className="size-6 rounded-full overflow-hidden" asChild>
+          <Link href="/profile">
             <AvatarImage src={session.user?.image??""} className="w-full h-full" />
             <AvatarFallback>U</AvatarFallback>
             </Link>
