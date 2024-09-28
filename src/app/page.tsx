@@ -59,7 +59,7 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/create">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                <Button size="lg" className="px-6 py-4 bg-gradient-to-r from-amber-500 to-pink-500 text-white">
                   Start Creating <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
